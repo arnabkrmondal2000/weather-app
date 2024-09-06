@@ -9,7 +9,7 @@ const WeatherCard = ({heading, data} : CardData) => {
 
     return(
         <>
-            <div className='cardItem'>
+            <div className='card-item'>
                 <h2>{heading}</h2>
                 <p>{data}</p>
             </div>

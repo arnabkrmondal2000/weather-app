@@ -1,11 +1,11 @@
-.displayContainer {
+.display-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
 }
 
-.inputItem {
+.input-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +22,7 @@ input {
     /* box-sizing: border-box; */
 }
 
-button {
+.input-item button {
     /* padding: 10px, 20px; */
     font-size: 20px;
     padding: 10px 20px;
@@ -31,4 +31,8 @@ button {
     background-color: #4caf50;
     color: white;
     cursor: pointer;
+}
+
+.input-item button :hover {
+    background-color: #28632a;
 }

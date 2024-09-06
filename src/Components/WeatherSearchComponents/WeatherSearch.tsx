@@ -1,5 +1,5 @@
-import React, { useState, ChangeEvent,MouseEvent } from "react";
-import WeatherData from "./WeatherView";
+import React, { useState, ChangeEvent,KeyboardEvent } from 'react';
+import WeatherData from '../WeatherViewComponent/WeatherView';
 import './WeatherSearch.css';
 
 const WeatherSearch = () => {
@@ -10,18 +10,23 @@ const WeatherSearch = () => {
         setCity(e.target.value);
     }
 
-    const handleSearch = (e:MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
+    const handleButtonClick = (e: KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            handleSearch();
+        }
+    }
+
+    const handleSearch = () => {
         setSearchItem(city)
-        setCity('');
     }
 
     console.log('search item ====>',searchItem);
     return(
         <>
-        <div className="displayContainer">
-            <div className='inputItem'>
-                <input type='text' placeholder='Write the name of the city' value={city} onChange={handleChange}  />
+        <div className="display-container">
+            <div className='input-item'>
+                <input type='text' placeholder='Write the name of the city' value={city} onChange={handleChange} onKeyDown={handleButtonClick} />
                 <button onClick={handleSearch}>Search</button>
             </div>
             <WeatherData searchItem={searchItem} />

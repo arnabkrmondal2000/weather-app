@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import axios from "axios";
-import WeatherCard from "./Card";
+import WeatherCard from "../CardComponent/Card";
 import './WeatherView.css';
 
-interface weatherDataProps {
+interface WeatherDataProps {
     searchItem : string;
 }
 
@@ -30,9 +30,20 @@ interface WeatherDataType {
     }
 }
 
-const WeatherData = ( { searchItem }: weatherDataProps) => {
+const WeatherData = ( { searchItem }: WeatherDataProps) => {
 
     const [weatherData, setWeatherData] = useState<WeatherDataType | null>(null);
+    const [loading, setLoading] = useState<boolean>(false);
+
+
+    useEffect(()=>{
+        if(searchItem) {
+        setLoading(true);
+        getWeathetData();
+      }
+    }, [searchItem]);
+
+
     const getWeathetData = async() => {
 
         try {
@@ -45,29 +56,32 @@ const WeatherData = ( { searchItem }: weatherDataProps) => {
             console.log('api response is===>', res);
             setWeatherData(res.data);
         } catch (error) {
-            console.log(error);
+            alert('error, No data foynd');
+            console.log('it is not valid place', error);
+        } finally {
+            setLoading(false);
         }
     }
 
-    console.log("weather data from api", weatherData);
+    console.log('weather data from api', weatherData);
 
-    useEffect(()=>{
-        getWeathetData();
-    }, [searchItem]);
+    // useEffect(()=>{
+    //     getWeathetData();
+    // }, [searchItem]);
 
     return (
-        <>
-         {weatherData && <div className='WeatherDisplay'>
+        <> 
+         {weatherData && <div className='Weather-display'>
              <WeatherCard heading='Country' data = {`${weatherData.location.country}`}/>
              <WeatherCard heading='Region' data = {`${weatherData.location.region}`}/>
              <WeatherCard heading='Name' data = {`${weatherData.location.name}`}/>
              <WeatherCard heading='Temparature' data = {`${weatherData.current.temp_c}°C`}/>
              <WeatherCard heading='Feels Like' data = {`${weatherData.current.feelslike_c}°C`}/>
-             <WeatherCard heading='Humiditu' data = {`${weatherData.current.humidity}%`}/>
+             <WeatherCard heading='Humidity' data = {`${weatherData.current.humidity}%`}/>
              <WeatherCard heading='Wind Speed' data = {`${weatherData.current.wind_kph}KM`}/>
              <WeatherCard heading='Dew Point' data = {`${weatherData.current.dewpoint_c}°C`}/>
              <WeatherCard heading='Conditions' data = {`${weatherData.current.condition.text}`}/>
-            </div>}
+           </div >}
         </>
     )
 }
