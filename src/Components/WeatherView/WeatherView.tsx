@@ -1,6 +1,6 @@
-import React, { useState,useEffect } from "react";
-import axios from "axios";
-import WeatherCard from "../CardComponent/Card";
+import React, { useState,useEffect } from 'react';
+import axios from 'axios';
+import WeatherCard from '../Card/Card';
 import './WeatherView.css';
 
 interface WeatherDataProps {

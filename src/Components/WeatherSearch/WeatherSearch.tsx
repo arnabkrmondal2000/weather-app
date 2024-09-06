@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent,KeyboardEvent } from 'react';
-import WeatherData from '../WeatherViewComponent/WeatherView';
+import WeatherData from '../WeatherView/WeatherView';
 import './WeatherSearch.css';
 
 const WeatherSearch = () => {
