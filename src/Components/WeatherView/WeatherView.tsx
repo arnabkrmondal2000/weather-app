@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from 'react';
 import axios from 'axios';
 import WeatherCard from '../Card/Card';
-import './WeatherView.css';
+import './WeatherView.scss';
 
 interface WeatherDataProps {
     searchItem : string;

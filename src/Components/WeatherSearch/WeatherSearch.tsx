@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent,KeyboardEvent } from 'react';
 import WeatherData from '../WeatherView/WeatherView';
-import './WeatherSearch.css';
+import './WeatherSearch.scss';
 
 const WeatherSearch = () => {
     const [city, setCity] = useState<string>('');
